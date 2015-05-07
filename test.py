@@ -2,7 +2,6 @@
 __author__ = 'William'
 
 import pyttsx
-
 engine = pyttsx.init()
 engine.setProperty('rate', 70)
 
