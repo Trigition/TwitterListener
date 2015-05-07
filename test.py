@@ -9,5 +9,6 @@ voices = engine.getProperty('voices')
 for voice in voices:
     print "Using voice:", voice.id
     engine.setProperty('voice', voice.id)
-    engine.say("Hi there, how's you ?")
+    print "Saying: \"Hi there, how are you?\""
+    engine.say("Hi there, how are you ?")
 engine.runAndWait()
