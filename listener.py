@@ -36,3 +36,4 @@ auth.set_access_token(ACCESS_TOKEN, ACCESS_SECRET)
 twitter_stream = Stream(auth, listener)
 
 twitter_stream.filter(track=['python', 'javascript', 'ruby'])
+# twitter_stream.filter()
