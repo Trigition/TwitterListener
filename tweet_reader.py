@@ -15,7 +15,5 @@ for line in tweet_file:
 print len(tweet_data)
 tweets = pd.DataFrame()
 tweets['text'] = map(lambda tweet: tweet['text'], tweet_data)
-tweets['time'] = map(lambda tweet: tweet['created_at'], tweet_data)
-tweets['place'] = map(lambda tweet: tweet['place'], tweet_data)
-tweets['coordinates'] = map(lambda tweet: tweet['coordinates'], tweet_data)
+tweets['lang'] = map(lambda tweet: tweet['lang'], tweet_data)
 print tweets

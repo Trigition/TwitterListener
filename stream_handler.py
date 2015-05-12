@@ -2,7 +2,6 @@
 __author__ = 'William'
 
 from tweepy.streaming import StreamListener
-import pandas as pd
 import json
 
 
@@ -16,4 +15,6 @@ class StreamHandler(StreamListener):
         print "ERROR", status
 
     def print_data(self, data):
-        print data
+        data = json.loads(data)
+        text = data['text']
+        print data['text']
