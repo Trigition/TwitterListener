@@ -15,6 +15,4 @@ class StreamHandler(StreamListener):
         print "ERROR", status
 
     def print_data(self, data):
-        data = json.loads(data)
-        text = data['text']
-        print data['text']
+        print data.strip('\n')
