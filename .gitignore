@@ -5,3 +5,7 @@ tweets.out
 *.pyc
 tweets
 *.tweet
+GlamourPrint*
+allCountries.txt
+filtered*
+

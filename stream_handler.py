@@ -4,6 +4,7 @@ __author__ = 'William'
 from tweepy.streaming import StreamListener
 import json
 import sys
+import GlamourPrint as gp
 from time import gmtime, strftime
 
 
@@ -12,12 +13,14 @@ class StreamHandler(StreamListener):
     def __init__(self):
         super(StreamHandler, self).__init__()
         self.prev_time = strftime("%H", gmtime())
+        self.num_tweets = 0
 
     def on_connect(self):
 
         pass
 
     def on_data(self, data):
+        self.num_tweets += 1
         self.print_data(data)
         return True
 
@@ -28,7 +31,6 @@ class StreamHandler(StreamListener):
         #Todo spawn process to write tweet
         current_hour = strftime("%H", gmtime())
         if current_hour != self.prev_time:
-            print current_hour, self.prev_time
             self.prev_time = current_hour
             raise RefreshWarning("Refreshed")
         try:
@@ -42,13 +44,10 @@ class StreamHandler(StreamListener):
             tweet = json.loads(data)
             try:
                 if tweet['coordinates'] is not None:
-                    str_out = "\rTweet received on: %s from %s\n" % (tweet['created_at'], tweet['coordinates'])
-                    sys.stdout.write(str_out)
-                    sys.stdout.flush()
+                    # gp.reprint("Tweet received on: %s from %s\n" % (tweet['created_at'], tweet['coordinates']['coordinates']))
+                    gp.color_print(["Tweet received on: %s from %s\n" % (tweet['created_at'], tweet['coordinates']['coordinates'])], ["red"])
                 else:
-                    reprint_string = "\rTweet #%s on %s" % (tweet['id_str'], tweet['created_at'])
-                    sys.stdout.write(reprint_string)
-                    sys.stdout.flush()
+                    print "Tweet: %s, number of tweets: %d" % (tweet['text'], self.num_tweets)
             except KeyError:
                 reprint_string = "\rTweet received on: %s" % tweet['created_at']
                 sys.stdout.write(reprint_string)

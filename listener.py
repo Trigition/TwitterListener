@@ -82,5 +82,5 @@ if "stream" in args.action:
                 search.append(trend['name'])
             for trend in US_trends['trends']:
                 search.append(trend['name'])
-            backoff = backoff ** 2
+            backoff = 2
             continue
